@@ -1,0 +1,64 @@
+name: Revolutionarity
+version: 1.0
+main: de.mariocst.revolutionarity.Revolutionarity
+api-version: 1.18
+softdepend:  [ Geyser-Spigot, floodgate ]
+authors: [ marioCST ]
+description: Revolutionarity AntiCheat for Paper
+website: https://mariocst.github.io
+
+commands:
+  revolutionarity:
+    description: Revolutionarity command
+    aliases: [ "rv" ]
+    permission: revolutionarity.command
+
+permissions:
+  revolutionarity.*:
+    description: Every permission for Revolutionarity
+    default: op
+    children:
+      revolutionarity.command: true
+      revolutionarity.bypass.*: true
+      revolutionarity.staff: true
+  revolutionarity.bypass.*:
+    description: Bypass all checks
+    default: op
+    children:
+      revolutionarity.bypass.airjump:
+        description: Bypass airjump check
+        default: op
+      revolutionarity.bypass.editionfaker:
+        description: Bypass editionfaker check (BE only)
+        default: op
+      revolutionarity.bypass.flyspeed:
+        description: Bypass flyspeed check
+        default: op
+      revolutionarity.bypass.highjump:
+        description: Bypass highjump check
+        default: op
+      revolutionarity.bypass.illegalblockinteraction:
+        description: Bypass illegalblockinteraction checks
+        default: op
+      revolutionarity.bypass.ongroundspoof:
+        description: Bypass onground spoof check
+        default: op
+      revolutionarity.bypass.reach:
+        description: Bypass reach check
+        default: op
+      revolutionarity.bypass.speed:
+        description: Bypass speed check
+        default: op
+      revolutionarity.bypass.toolbox:
+        description: Bypass ToolBox check (BE only)
+        default: op
+  revolutionarity.command:
+    description: Permission for /revolutionarity
+    default: op
+    children:
+      revolutionarity.command.config:
+        description: Permission to reload and save the config
+        default: op
+  revolutionarity.staff:
+    description: Get messages if someone is cheating
+    default: op
