@@ -92,7 +92,7 @@ public final class Revolutionarity extends JavaPlugin {
     public void onEnable() {
         if (this.getServer().getPluginManager().getPlugin("Geyser-Spigot") != null) {
             isGeyserInstalled = true;
-            this.getLogger().warning("Geyser is installed! Bedrock functionalities are enabled!");
+            this.getLogger().info("Geyser is installed! Bedrock functionalities are enabled!");
         }
         else {
             isGeyserInstalled = false;
@@ -102,7 +102,7 @@ public final class Revolutionarity extends JavaPlugin {
         if (isGeyserInstalled) {
             if (this.getServer().getPluginManager().getPlugin("floodgate") != null) {
                 isFloodgateInstalled = true;
-                this.getLogger().warning("Floodgate is installed! Additional Bedrock functionalities are enabled!");
+                this.getLogger().info("Floodgate is installed! Additional Bedrock functionalities are enabled!");
             }
             else {
                 isFloodgateInstalled = false;
