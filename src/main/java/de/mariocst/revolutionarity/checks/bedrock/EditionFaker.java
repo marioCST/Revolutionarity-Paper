@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.geysermc.floodgate.api.FloodgateApi;
+import org.geysermc.floodgate.api.player.FloodgatePlayer;
 import org.geysermc.floodgate.util.DeviceOs;
 import org.geysermc.geyser.GeyserImpl;
 import org.geysermc.geyser.session.GeyserSession;
@@ -17,7 +19,7 @@ public class EditionFaker implements Listener {
 
         Player player = event.getPlayer();
 
-        if (GeyserImpl.getInstance().connectionByUuid(player.getUniqueId()) == null) return;
+        if (!FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId())) return;
 
         if (player.hasPermission("revolutionarity.bypass.editionfaker") ||
                 player.hasPermission("revolutionarity.bypass.*") ||
@@ -28,17 +30,15 @@ public class EditionFaker implements Listener {
         GeyserSession session = GeyserImpl.getInstance().connectionByUuid(player.getUniqueId());
         BedrockClientData data = session.getClientData();
 
+        FloodgatePlayer fPlayer = FloodgateApi.getInstance().getPlayer(player.getUniqueId());
+
+        if (fPlayer == null) return;
+
         // I don't know the device models of all other versions (except windows)
-        // Calling data.getDeviceOs() is causing a LinkageError for some weird reason
-        if (!this.translateDeviceOSDueToGeyserBeingShit(data.getDeviceOs()).equalsIgnoreCase("android") &&
-                !this.translateDeviceOSDueToGeyserBeingShit(data.getDeviceOs()).equalsIgnoreCase("ios")) return;
+        if (fPlayer.getDeviceOs() != DeviceOs.GOOGLE && fPlayer.getDeviceOs() != DeviceOs.IOS) return;
 
         if (data.getDeviceModel().equals("")) {
             Revolutionarity.getInstance().flag(player, "EditionFaker", Revolutionarity.getInstance().getVelo().getMaxVelo());
         }
-    }
-
-    private String translateDeviceOSDueToGeyserBeingShit(DeviceOs os) {
-        return os.name();
     }
 }

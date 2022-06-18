@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.geysermc.floodgate.api.FloodgateApi;
+import org.geysermc.floodgate.api.player.FloodgatePlayer;
 import org.geysermc.floodgate.util.DeviceOs;
 import org.geysermc.geyser.GeyserImpl;
 import org.geysermc.geyser.session.GeyserSession;
@@ -28,15 +30,14 @@ public class ToolBox implements Listener {
         GeyserSession session = GeyserImpl.getInstance().connectionByUuid(player.getUniqueId());
         BedrockClientData data = session.getClientData();
 
-        // Calling data.getDeviceOs() is causing a LinkageError for some weird reason
-        if (!this.translateDeviceOSDueToGeyserBeingShit(data.getDeviceOs()).equalsIgnoreCase("android")) return;
+        FloodgatePlayer fPlayer = FloodgateApi.getInstance().getPlayer(player.getUniqueId());
+
+        if (fPlayer == null) return;
+
+        if (fPlayer.getDeviceOs() != DeviceOs.GOOGLE) return;
 
         if (!data.getDeviceModel().equals(data.getDeviceModel().toUpperCase())) {
             Revolutionarity.getInstance().flag(player, "ToolBox", Revolutionarity.getInstance().getVelo().getMaxVelo());
         }
-    }
-
-    private String translateDeviceOSDueToGeyserBeingShit(DeviceOs os) {
-        return os.name();
     }
 }

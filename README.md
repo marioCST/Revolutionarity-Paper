@@ -10,8 +10,8 @@ Java: 17
 
 **Bedrock Checks:**
 
-- EditionFaker (doesn't work because Geyser throws LinkageError while calling getDeviceOs)
-- ToolBox (doesn't work because Geyser throws LinkageError while calling getDeviceOs)
+- EditionFaker
+- ToolBox
 
 **Checks:**
 

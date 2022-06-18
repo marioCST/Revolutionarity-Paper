@@ -1,5 +1,6 @@
 package de.mariocst.revolutionarity;
 
+import de.mariocst.revolutionarity.checks.bedrock.*;
 import de.mariocst.revolutionarity.checks.both.*;
 import de.mariocst.revolutionarity.checks.java.*;
 import de.mariocst.revolutionarity.commands.RevolutionarityCommand;
@@ -188,10 +189,10 @@ public final class Revolutionarity extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new Reach(), this);
         this.getServer().getPluginManager().registerEvents(new Speed(), this);
 
-        if (!this.isGeyserInstalled) return;
+        if (!this.isFloodgateInstalled) return;
 
-        /*this.getServer().getPluginManager().registerEvents(new EditionFaker(), this);
-        this.getServer().getPluginManager().registerEvents(new ToolBox(), this);*/
+        this.getServer().getPluginManager().registerEvents(new EditionFaker(), this);
+        this.getServer().getPluginManager().registerEvents(new ToolBox(), this);
     }
 
     public void log(String msg) {
