@@ -6,7 +6,7 @@
 
     <groupId>de.mariocst</groupId>
     <artifactId>Revolutionarity</artifactId>
-    <version>1.0</version>
+    <version>1.16</version>
     <packaging>jar</packaging>
 
     <name>Revolutionarity</name>
@@ -16,7 +16,6 @@
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <url>https://mariocst.github.io</url>
 
     <build>
         <plugins>

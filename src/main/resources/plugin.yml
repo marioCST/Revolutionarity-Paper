@@ -1,5 +1,5 @@
 name: Revolutionarity
-version: 1.0
+version: 1.16
 main: de.mariocst.revolutionarity.Revolutionarity
 api-version: 1.18
 softdepend:  [ Geyser-Spigot, floodgate ]
